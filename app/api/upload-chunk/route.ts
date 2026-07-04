@@ -12,9 +12,10 @@ export async function POST(req: Request) {
     return NextResponse.json({ error: 'Tham so khong hop le' }, { status: 400 })
   }
   const body = await req.arrayBuffer()
-  await put('chunks/' + fileId + '/' + index, Buffer.from(body), {
-    addRandomSuffix: false,
-    contentType: 'application/octet-stream',
-  })
+await put('chunks/' + fileId + '/' + index, Buffer.from(body), {
+  access: 'private', // Dòng này là bắt buộc, không được xóa
+  addRandomSuffix: false,
+  contentType: 'application/octet-stream',
+})
   return NextResponse.json({ ok: true })
 }

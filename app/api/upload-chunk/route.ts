@@ -13,7 +13,6 @@ export async function POST(req: Request) {
   }
   const body = await req.arrayBuffer()
   await put('chunks/' + fileId + '/' + index, Buffer.from(body), {
-    access: 'private',
     addRandomSuffix: false,
     contentType: 'application/octet-stream',
   })
